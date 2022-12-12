@@ -29,9 +29,7 @@
                         <iconify-icon icon="mdi:user" width="30" height="30"></iconify-icon>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-lg-end">
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                      <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
                     </ul>
                   </div>
             </nav>

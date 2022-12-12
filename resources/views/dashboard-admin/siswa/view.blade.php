@@ -1,5 +1,5 @@
-<div style="display: flex">
-    <div>
+<div style="display: flex;justify-content: center" >
+    <div style="display: flex;justify-content: center"   >
         <img src="assets/image/logo.png" style="width: 250px;height: 250px;margin-left: 30%;margin-top: 30%;margin-bottom: 30%" alt="">
     </div>
     <div style="margin-left: 15%;font-family: 'Montserrat', sans-serif;">

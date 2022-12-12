@@ -19,7 +19,7 @@
     <label style="margin-bottom: 0.5%;font-weight: bold" for="">Jurusan :</label><br>
     <select class="form-select" aria-label="Default select example" name="jurusan" id="jurusan">
       <option disabled value selected>Pilih Jurusan</option>
-      <option value="Laki-PPLG">PPLG</option>
+      <option value="PPLG">PPLG</option>
       <option value="ANIMASI">ANIMASI</option>
       <option value="TKJ">TKJ</option>
       <option value="BC">BC</option>

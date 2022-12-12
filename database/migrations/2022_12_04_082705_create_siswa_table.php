@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('jurusan');
             $table->string('jenis_kelamin');
             $table->text('alamat');
-            $table->bigInteger('no_telepon');
+            $table->string('no_telepon');
             $table->string('email');
             $table->string('password'); 
             $table->timestamps();

@@ -8,14 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     protected $table = 'kelas';
-    protected $guarded=['id'];
+    protected $primarykey = 'id';
+    protected $fillable = [
+        'id',
+      'nama_kelas',
+      'guru_id',  
+    ];
 
-    public function RelationToGuru(){
-        return $this->belongsTo('App\Models\Guru','id');
+    public function guru(){
+        return $this->belongsTo(Guru::class);
     }
     
-    public function RelasiToSiswaFromKelas(){
-        return $this->belongsToMany('App\Models\Siswa');
+    public function siswa(){
+        return $this->hasMany(Siswa::class);
     }
 }   
 

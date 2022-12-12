@@ -11,6 +11,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDO;
+use Termwind\Components\Dd;
 
 class DashboardController extends Controller
 {
@@ -52,7 +53,20 @@ class DashboardController extends Controller
         return redirect('/');
     }
     
-    public function delete(){
-        
+    public function delete(Request $request){
+        $dash = Dashboard::findOrFail($request->id);
+        $dash2 = $dash->id;
+        DB::table('dashboard_siswa')->where('dashboard_id',$dash2)->delete();
+         DB::table('dashboard_pelanggaran')->where('dashboard_id',$dash2)->delete();
+        $dash->delete();
+        $doc = Siswa::findOrFail($request->siswa);
+        $docs = Pelanggaran::findOrFail($request->pel);
+        $dok = $docs->point;
+        $doks = $doc->point;
+        $plus = $doks - $dok;
+        $doc->update([
+            'point' => $plus,
+        ]);
+        return redirect('/');
     }
 }

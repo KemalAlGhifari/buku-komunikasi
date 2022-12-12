@@ -15,7 +15,7 @@ class Siswa extends Model
     //     return $this->belongsTo('App\Models\Guru','id');
     // }
 
-    public function RelationTokelas(){
-        return $this->belongsToMany('App\Models\Kelas');
+    public function kelas(){
+        return $this->belongsTo(Kelas::class);
     }
 }

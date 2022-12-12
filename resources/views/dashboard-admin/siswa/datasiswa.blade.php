@@ -32,9 +32,7 @@
                   <iconify-icon icon="mdi:user" width="30" height="30"></iconify-icon>
               </button>
               <ul class="dropdown-menu dropdown-menu-lg-end">
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
+                <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
               </ul>
             </div>
       </nav>
@@ -145,8 +143,7 @@
                 <td style="width: 2%;">{{$no++}}</td>
                 <td style="width: 20%;">{{$itemsiswa->nama}}</td>
                 <td style="width: 12%;">
-                    @foreach ($itemsiswa->RelationTokelas as $siswaa)
-                        {{$siswaa->nama_kelas}}
+                    {{$itemsiswa->kelas->nama_kelas}}
                     
                 </td>
                 <td style="width: 12%;">{{$itemsiswa->jurusan}}</td>
@@ -154,20 +151,20 @@
                 <td style="width: 20%;">{{$itemsiswa->point}}</td>
                 <td >
                   <div  style="display: flex;justify-content: center;gap: 10px;">
-                    <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px"   type="button" class="btn btn-primary" data-bs-toggle="modal" data-point='{{$itemsiswa->point}}' data-mynama='{{$itemsiswa->nama}}' data-nisn='{{$itemsiswa->nisn}}'  data-kelas='{{$siswaa->nama_kelas}}' data-jurusan='{{$itemsiswa->jurusan}}' data-jenis='{{$itemsiswa->jenis_kelamin}}' data-alamat='{{$itemsiswa->alamat}}' data-no='0{{$itemsiswa->no_telepon}}' data-email='{{$itemsiswa->email}}' data-pass='{{$itemsiswa->password}}' data-id='{{$itemsiswa->id}}' data-bs-target="#view">
+                    <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px"   type="button" class="btn btn-primary" data-bs-toggle="modal" data-point='{{$itemsiswa->point}}' data-mynama='{{$itemsiswa->nama}}' data-nisn='{{$itemsiswa->nisn}}'  data-kelas='{{$itemsiswa->kelas->nama_kelas}}' data-jurusan='{{$itemsiswa->jurusan}}' data-jenis='{{$itemsiswa->jenis_kelamin}}' data-alamat='{{$itemsiswa->alamat}}' data-no='{{$itemsiswa->no_telepon}}' data-email='{{$itemsiswa->email}}' data-pass='{{$itemsiswa->password}}' data-id='{{$itemsiswa->id}}' data-bs-target="#view">
                       <span style="font-size: 13px">View</span>
                     </button>
                     <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px"   type="button" class="btn btn-success" data-bs-toggle="modal" data-mynama='{{$itemsiswa->nama}}' data-nisn='{{$itemsiswa->nisn}}'  data-kelas='{{$itemsiswa->kelas_id}}'data-jurusan='{{$itemsiswa->jurusan}}' data-jenis='{{$itemsiswa->jenis_kelamin}}' data-alamat='{{$itemsiswa->alamat}}' data-no='{{$itemsiswa->no_telepon}}' data-email='{{$itemsiswa->email}}' data-pass='{{$itemsiswa->password}}' data-id='{{$itemsiswa->id}}' data-bs-target="#edit">
                       <span style="font-size: 13px">Edit</span>
                     </button>
                  
-                    <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px"   type="button" class="btn btn-danger" data-bs-toggle="modal" data-mynama='{{$itemsiswa->nama}}' data-nisn='{{$itemsiswa->nisn}}'  data-kelas='{{$itemsiswa->kelas}}' data-jurusan='{{$itemsiswa->jurusan}}' data-jenis='{{$itemsiswa->jenis_kelamin}}' data-alamat='{{$itemsiswa->alamat}}' data-no='{{$itemsiswa->no_telepon}}' data-email='{{$itemsiswa->email}}' data-pass='{{$itemsiswa->password}}' data-id='{{$itemsiswa->id}}' data-bs-target="#delete">
+                    <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px"   type="button" class="btn btn-danger" data-bs-toggle="modal" data-mynama='{{$itemsiswa->nama}}' data-nisn='{{$itemsiswa->nisn}}'  data-kelas='{{$itemsiswa->kelas_id}}' data-jurusan='{{$itemsiswa->jurusan}}' data-jenis='{{$itemsiswa->jenis_kelamin}}' data-alamat='{{$itemsiswa->alamat}}' data-no='{{$itemsiswa->no_telepon}}' data-email='{{$itemsiswa->email}}' data-pass='{{$itemsiswa->password}}' data-id='{{$itemsiswa->id}}' data-bs-target="#delete">
                       <span style="font-size: 13px">Hapus</span>
                     </button>
                 </div>
                 </td>
               </tr>
-              @endforeach
+            
               @endforeach
               
             </table>

@@ -13,11 +13,11 @@ class GuruController extends Controller
         return view('dashboard-admin.guru.dataguru',['guru'=>$guru]);
     }
 
-
+    
     public function update(Request $request){
         $doc = Guru::findOrFail($request->id);
         $doc->update([
-            'nama' => $request->nama,
+            'nama_guru' => $request->nama,
             'nip'=>$request->nip,
             'mata_pelajaran'=>$request->mata_pelajaran,
         ]);
@@ -28,11 +28,11 @@ class GuruController extends Controller
         $doc = Guru::findOrFail($request->id);
         $doc->delete([$request->all()]); 
         return redirect('/guru');
-    } 
+    }
 
     public function store(Request $request){
         Guru::create([
-            'nama' => $request->nama,
+            'nama_guru' => $request->nama_guru,
             'nip'=>$request->nip,
             'mata_pelajaran'=>$request->mata_pelajaran,
         ]);

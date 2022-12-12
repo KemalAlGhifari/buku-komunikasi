@@ -29,9 +29,7 @@
                         <iconify-icon icon="mdi:user" width="30" height="30"></iconify-icon>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-lg-end">
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                      <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
                     </ul>
                   </div>
             </nav>
@@ -66,7 +64,7 @@
                 </form>
 
                 {{-- modal edit --}}
-                <form method="post" action="{{route('updatepoint')}}">
+                <form method="post" action="{{route('updatekelas')}}">
                   @csrf
                 <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
@@ -76,7 +74,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        @include('dashboard-admin/point/formedit')
+                        @include('dashboard-admin/kelas/edit')
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -118,21 +116,20 @@
                       <td style="width: 10%;">Opsi</td>
                     </tr>
                     @php $no = 1 @endphp
-                    @foreach ($kelas as $itempoint)
+                    @foreach ($test as $itempoint)
                     <tr style="text-align: center;border-bottom: 1px solid rgb(170, 170, 170)">
                         <td style="width: 2%;">{{$no++}}</td>
                         <td style="width: 25%;">{{$itempoint->nama_kelas}}</td>
-                        <td style="width: 30%;">@foreach ($itempoint->RelationToGuru as $namakelas)
-                            {{$namakelas->nama}}
-                        @endforeach</td>
+                        <td style="width: 30%;">{{$itempoint->guru->nama_guru??'belumterelasi'}}</td>
                         <td>
                           <div style="display: flex;justify-content: center;gap: 10px;">
-                            <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px" data-pelanggaran='{{$itempoint->pelanggaran}}' data-sanksi='{{$itempoint->sanksi}}' data-id="{{$itempoint->id}}" data-point="{{$itempoint->point}}" type="button" class="btn btn-success" data-bs-toggle="modal"   data-bs-target="#edit">
+                            <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px" data-nama='{{$itempoint->nama_kelas}}' data-walikelas='{{$itempoint->guru_id}}' data-id="{{$itempoint->id}}" data-point="{{$itempoint->point}}" type="button" class="btn btn-success" data-bs-toggle="modal"   data-bs-target="#edit">
                               <span style="font-size: 13px">Edit</span>
                             </button>
-                            <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px" data-pelanggaran='{{$itempoint->pelanggaran}}' data-sanksi='{{$itempoint->sanksi}}' data-id="{{$itempoint->id}}" data-point="{{$itempoint->point}}" type="button" class="btn btn-danger" data-bs-toggle="modal"   data-bs-target="#delete">
+                            <a style="text-decoration: none" href="{!! route('hapuskelas', ['id'=>$itempoint->id]) !!}"><button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px;" type="button" class="btn btn-danger" >
                               <span style="font-size: 13px">Hapus</span>
-                            </button>
+                            </button></a>
+                            
                             </button>
                             </button>
                           </div>
@@ -148,16 +145,15 @@
     <script>
       $('#edit').on('show.bs.modal',function(event){
   var button = $(event.relatedTarget)
-  var nama = button.data('pelanggaran')
-  var nisn = button.data('sanksi')
-  var kelas = button.data('point')
+  var nama = button.data('nama')
+  var walikelas = button.data('walikelas')
+
 
   var id = button.data('id')
   
   var modal = $(this)
-  modal.find('#pelanggaran').val(nama)
-  modal.find('#sanksi').val(nisn)
-  modal.find('#point').val(kelas)
+  modal.find('#kelas').val(nama)
+  modal.find('#walas').val(walikelas)
 
   modal.find('#id').val(id)
 }) 

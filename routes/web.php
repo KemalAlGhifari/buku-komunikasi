@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// login
+Route::get('/login', [LoginController::class,'index'])->name('login');
+
+Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth','admin:admin,user']], function(){
 // siswa
 Route::get('/siswa', [SiswaController::class,'siswa']);
 
@@ -46,10 +56,14 @@ Route::post('/editpoint', [PointController::class,'update'])->name('updatepoint'
 
 Route::post('/hapuspoint', [PointController::class,'delete'])->name('hapuspoint');
 
-// kelas
+// kelas 
 Route::get('/kelas', [KelasController::class,'kelas']);
 
 Route::post('/tambahkelas/store', [KelasController::class,'store']);
+
+Route::get('/hapuspoint/{id}', [KelasController::class,'delete'])->name('hapuskelas');
+
+Route::post('/hapuskelas', [KelasController::class,'update'])->name('updatekelas');
 
 // dashboard
 Route::get('/', [DashboardController::class,'index']);
@@ -57,3 +71,6 @@ Route::get('/', [DashboardController::class,'index']);
 Route::post('/tambahpelanggaran/store', [DashboardController::class,'store']);
 
 Route::post('/tambahpelanggaran/delete', [DashboardController::class,'delete'])->name('hapusdash');
+
+
+});

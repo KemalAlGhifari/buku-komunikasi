@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\DB;
 class KelasController extends Controller
 {
     public function kelas(){
-        $guru = Guru::with('RelationToKelasfromguru')->get();
-        $test = Kelas::with('RelationToGuru')->get();
+        $guru = Guru::all();
+        $test = Kelas::with('guru')->get();
+
         
-        return view('dashboard-admin.kelas.datakelas',['kelas'=>$test,'guru' => $guru]);
+        return view('dashboard-admin.kelas.datakelas',compact(['guru','test']));
     }
 
     public function store(Request $request){
@@ -22,10 +23,21 @@ class KelasController extends Controller
             'nama_kelas' => $request->kelas,
             'guru_id'=>$request->walas,
         ]);
-        $data = DB::table('kelas')->orderBy('id', 'DESC')->limit(1)->get()->pluck('id')->first();
-        Guru_kelas::create([
+       
+        return redirect('/kelas');
+    }
+
+    public function delete($id){
+        $datas = kelas::findOrFail($id);
+        $datas->delete();
+        return redirect('/kelas');
+    }
+
+    public function update(Request $request){
+        $data = kelas::findOrFail($request->id);
+        $data->update([
+            'nama_kelas' => $request->kelas,
             'guru_id'=>$request->walas,
-            'kelas_id'=>$data
         ]);
         return redirect('/kelas');
     }

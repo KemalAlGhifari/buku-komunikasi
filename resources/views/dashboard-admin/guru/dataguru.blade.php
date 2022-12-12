@@ -29,9 +29,7 @@
                         <iconify-icon icon="mdi:user" width="30" height="30"></iconify-icon>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-lg-end">
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                      <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
                     </ul>
                   </div>
             </nav>
@@ -118,15 +116,16 @@
                       <td style="width: 30%;">MatPel</td>
                       <td style="width: 10%;">Opsi</td>
                     </tr>
+                    @php $no = 1 @endphp
                     @foreach ($guru as $itemguru)
                     <tr style="text-align: center;border-bottom: 1px solid rgb(170, 170, 170)">
-                        <td style="width: 2%;">1</td>
-                        <td style="width: 25%;">{{$itemguru->nama}}</td>
+                        <td style="width: 2%;">{{$no++}}</td>
+                        <td style="width: 25%;">{{$itemguru->nama_guru}}</td>
                         <td style="width: 10%;">{{$itemguru->nip}}</td>
                         <td style="width: 30%;">{{$itemguru->mata_pelajaran}}</td>
                         <td>
                           <div style="display: flex;justify-content: center;gap: 10px;">
-                            <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px" data-nama='{{$itemguru->nama}}' data-nip='{{$itemguru->nip}}' data-id="{{$itemguru->id}}" data-matpel="{{$itemguru->mata_pelajaran}}" type="button" class="btn btn-success" data-bs-toggle="modal"   data-bs-target="#edit">
+                            <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px" data-nama='{{$itemguru->nama_guru}}' data-nip='{{$itemguru->nip}}' data-id="{{$itemguru->id}}" data-matpel="{{$itemguru->mata_pelajaran}}" type="button" class="btn btn-success" data-bs-toggle="modal"   data-bs-target="#edit">
                               <span style="font-size: 13px">Edit</span>
                             </button>
                             <button style="height: 25px;display: flex;align-items: center;width: 60px;justify-content: center;font-size: 14px" data-nama='{{$itemguru->nama}}' data-nip='{{$itemguru->nip}}' data-id="{{$itemguru->id}}" data-matpel="{{$itemguru->mata_pelajaran}}" type="button" class="btn btn-danger" data-bs-toggle="modal"   data-bs-target="#delete">

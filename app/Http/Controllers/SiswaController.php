@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dashboard;
 use App\Models\Kelas;
-use App\Models\Kelas_Siswa;
+
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,12 +33,7 @@ class SiswaController extends Controller
             'password'=>$request->password,
             'point'=>0,
         ]);
-        $data = DB::table('siswa')->orderBy('id', 'DESC')->limit(1)->get()->pluck('id')->first();
-        
-        Kelas_Siswa::create([
-            'kelas_id' =>$request->kelas,
-            'siswa_id' =>$data 
-        ]);
+      
         return redirect('/siswa');
     }
 
@@ -61,10 +56,6 @@ class SiswaController extends Controller
 
     public function delete(Request $request){
         $doc = Siswa::findOrFail($request->id);
-       
-        $docs =  Kelas_Siswa::where('siswa_id', $request->id)->firstOrFail();
-        $docs->delete([$request->all()]); 
-
         $doc->delete([$request->all()]); 
         
         return redirect('/siswa');

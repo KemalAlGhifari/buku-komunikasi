@@ -7,7 +7,7 @@
     <select class="form-select" aria-label="Default select example" name="walas" id="">
         <option disabled value selected>Pilih Walas</option>
         @foreach ($guru as $itemguru)
-        <option value="{{$itemguru->id}}">{{$itemguru->nama}}</option>
+        <option value="{{$itemguru->id}}">{{$itemguru->nama_guru}}</option>
         @endforeach
         
         
